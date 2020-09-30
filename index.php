@@ -2,37 +2,43 @@
     include __DIR__ .'/partials/templates/header.php';
     include __DIR__ .'/partials/home/server.php';
  ?>
-    <body>
-        <div class="container">
-            <table class=table>
+
+    <div class="container" >
+        <?php  if(!empty($_GET['roomId']))  {
+            $stanza_cancellata = $_GET['roomId'];?>
+            <div class="alert">
+                <?php echo "hai cancellato la stanza numero $stanza_cancellata"; ?>
+            </div>
+        <?php } ?>
+        <table class=table>
+            <tr>
+                <th>ID</th>
+                <th>Numero stanza</th>
+                <th>Floor</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tbody>
+                <?php foreach ($results as $room) { ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Numero stanza</th>
-                    <th>Floor</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td><?php echo $room ['id'];?></td>
+                    <td><?php echo $room ['room_number'];?></td>
+                    <td><?php echo $room ['floor'];?></td>
+                    <td><a href="show.php?id=<?php echo $room ['id'];?>">WIEW</a> </td>
+                    <td><a href="update.php?id=<?php echo $room ['id'];?>">UPDATE</a> </td>
+                    <td>
+                        <form class="" action="partials/delete/server.php" method="post">
+                            <input type="submit" name="" value="DELETE" class="btn btn-danger">
+                            <input type="hidden" name="id" value="<?php echo $room ['id'];?>">
+                        </form>
+                    </td>
                 </tr>
-                <tbody>
-                    <?php foreach ($results as $room) { ?>
-                    <tr>
-                        <td><?php echo $room ['id'];?></td>
-                        <td><?php echo $room ['room_number'];?></td>
-                        <td><?php echo $room ['floor'];?></td>
-                        <td><a href="show.php?id=<?php echo $room ['id'];?>">WIEW</a> </td>
-                        <td><a href="#">UPDATE</a> </td>
-                        <td>
-                            <form class="" action="partials/delete/server.php" method="post">
-                                <input type="submit" name="" value="DELETE" class="btn btn-danger">
-                                <input type="hidden" name="id" value="<?php echo $room ['id'];?>">
-                            </form>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
-
-    </body>
-</html>
+<?php
+    include __DIR__ .'/partials/templates/footer.php';
+ ?>

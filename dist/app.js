@@ -115,8 +115,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\mamp-public\29-09\php-crud\src\app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! F:\mamp-public\29-09\php-crud\src\app.scss */"./src/app.scss");
+__webpack_require__(/*! F:\mamp-public\Esercizi\05\php-crud-read-create-update\src\app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! F:\mamp-public\Esercizi\05\php-crud-read-create-update\src\app.scss */"./src/app.scss");
 
 
 /***/ })
