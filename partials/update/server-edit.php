@@ -3,7 +3,7 @@
     include __DIR__ .'/../database.php';
 
 
-    $sql = "UPDATE `stanze` SET room_number = ?, floor = ?, beds = ? WHERE id = ?";
+    $sql = "UPDATE `stanze` SET room_number = ?, floor = ?, beds = ?, updated_at = NOW() WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt -> bind_param("iiii", $room, $floor, $bed, $id);
@@ -23,5 +23,7 @@
     } else {
         die ("impossibile modificare");
     }
+
+    $stmt->close();
 
     $conn->close();
